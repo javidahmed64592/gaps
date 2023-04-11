@@ -1,26 +1,24 @@
-import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Box } from "@mui/material";
+import NavBar from "./components/navigation/NavBar";
+import { pages } from "./public/Pages";
+import { getColours } from "./state/ColourSlice";
+import { getPage, getNavbarHeader } from "./state/PageSlice";
 
 export default function App() {
-  const [data, setData] = useState({
-    date: "",
-  });
-
-  useEffect(() => {
-    fetch("/data").then((res) =>
-      res.json().then((data) => {
-        setData({
-          date: data.data,
-        });
-      })
-    );
-  }, []);
+  const colours = useSelector((state) => getColours(state));
+  const pageState = useSelector((state) => getPage(state));
+  const navbarHeader = useSelector((state) => getNavbarHeader(state));
 
   return (
-    <div>
-      <header>
-        <h1>Genetic Algorithms - Phrase Solver</h1>
-        <p>{data.date}</p>
-      </header>
-    </div>
+    <Box
+      height="100vh"
+      display="flex"
+      flexDirection="column"
+      style={{ backgroundColor: colours.secondary }}
+    >
+      <NavBar colours={colours} navbarHeader={navbarHeader} />
+      {pages[pageState]}
+    </Box>
   );
 }
