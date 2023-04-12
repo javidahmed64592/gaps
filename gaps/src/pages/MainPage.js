@@ -1,24 +1,21 @@
-import { useSelector } from "react-redux";
-import { Stack, Typography } from "@mui/material";
-import { getColours } from "../state/ColourSlice";
+import { Stack } from "@mui/material";
+import GAForm from "../components/form/GAForm";
+import ResultsDisplay from "../components/results/ResultsDisplay";
 
 export default function MainPage() {
-  const colours = useSelector((state) => getColours(state));
-
   return (
     <Stack
-      direction="column"
+      display="flex"
+      flexDirection="row"
       justifyContent="flex-start"
       alignItems="center"
       overflow="auto"
       style={{
-        minWidth: "100%",
         height: "100vh",
       }}
     >
-      <Typography style={{ color: colours.quaternary }}>
-        Genetic Algorithms - Phrase Solver
-      </Typography>
+      <GAForm />
+      <ResultsDisplay />
     </Stack>
   );
 }
