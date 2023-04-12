@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 import { Stack } from "@mui/system";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import FormField from "./FormField";
+import StyledTextField from "./StyledTextField";
+import StyledNumberField from "./StyledNumberField";
 import StyledTextIconButton from "../buttons/StyledTextIconButton";
 import { startAlgorithm } from "../../routers/GARouters";
 import {
@@ -9,6 +10,10 @@ import {
   setPhrase,
   setMutationRate,
   setPopulationSize,
+  incrementPopulationSize,
+  decrementPopulationSize,
+  incrementMutationRate,
+  decrementMutationRate,
   getGenes,
   getPhrase,
   getMutationRate,
@@ -30,17 +35,25 @@ export default function GAForm() {
       spacing={2}
       margin={2}
     >
-      <FormField label="Phrase" value={phrase} onChangeValue={setPhrase} />
-      <FormField label="Genes" value={genes} onChangeValue={setGenes} />
-      <FormField
+      <StyledTextField
+        label="Phrase"
+        value={phrase}
+        onChangeValue={setPhrase}
+      />
+      <StyledTextField label="Genes" value={genes} onChangeValue={setGenes} />
+      <StyledNumberField
         label="Population Size"
         value={populationSize}
         onChangeValue={setPopulationSize}
+        onDecrementValue={decrementPopulationSize}
+        onIncrementValue={incrementPopulationSize}
       />
-      <FormField
+      <StyledNumberField
         label="Mutation Rate"
         value={mutationRate}
         onChangeValue={setMutationRate}
+        onDecrementValue={decrementMutationRate}
+        onIncrementValue={incrementMutationRate}
       />
       <StyledTextIconButton
         variant="outlined"

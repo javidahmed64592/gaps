@@ -3,7 +3,7 @@ import { Stack } from "@mui/system";
 import { Typography, TextField } from "@mui/material";
 import { getColours } from "../../state/ColourSlice";
 
-export default function FormField(props) {
+export default function StyledTextField(props) {
   const dispatch = useDispatch();
   const colours = useSelector((state) => getColours(state));
 

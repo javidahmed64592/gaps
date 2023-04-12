@@ -19,16 +19,36 @@ export const formSlice = createSlice({
       state.value.phrase = action.payload;
     },
     setMutationRate: (state, action) => {
-      state.value.mutationRate = action.payload;
+      state.value.mutationRate = parseInt(action.payload);
     },
     setPopulationSize: (state, action) => {
-      state.value.populationSize = action.payload;
+      state.value.populationSize = parseInt(action.payload);
+    },
+    incrementPopulationSize: (state) => {
+      state.value.populationSize += 1;
+    },
+    decrementPopulationSize: (state) => {
+      state.value.populationSize = Math.max(0, state.value.populationSize - 1);
+    },
+    incrementMutationRate: (state) => {
+      state.value.mutationRate += 1;
+    },
+    decrementMutationRate: (state) => {
+      state.value.mutationRate = Math.max(0, state.value.mutationRate - 1);
     },
   },
 });
 
-export const { setGenes, setPhrase, setMutationRate, setPopulationSize } =
-  formSlice.actions;
+export const {
+  setGenes,
+  setPhrase,
+  setMutationRate,
+  setPopulationSize,
+  incrementPopulationSize,
+  decrementPopulationSize,
+  incrementMutationRate,
+  decrementMutationRate,
+} = formSlice.actions;
 
 export const getGenes = (state) => state.form.value.genes;
 export const getPhrase = (state) => state.form.value.phrase;
