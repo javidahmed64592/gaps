@@ -12,12 +12,7 @@ export default function StyledTextField(props) {
   };
 
   return (
-    <Stack
-      direction="column"
-      justifyContent="flex-start"
-      alignItems="flex-start"
-      width="fit-content"
-    >
+    <Stack direction="column" justifyContent="center" alignItems="center">
       <Typography
         style={{
           color: colours.primary,

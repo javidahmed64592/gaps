@@ -29,9 +29,8 @@ export default function GAForm() {
   return (
     <Stack
       direction="column"
-      justifyContent="flex-start"
+      justifyContent="center"
       alignItems="center"
-      overflow="auto"
       spacing={2}
       margin={2}
     >

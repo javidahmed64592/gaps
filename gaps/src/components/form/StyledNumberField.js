@@ -25,12 +25,7 @@ export default function StyledNumberField(props) {
   };
 
   return (
-    <Stack
-      direction="column"
-      justifyContent="flex-start"
-      alignItems="flex-start"
-      width="fit-content"
-    >
+    <Stack direction="column" justifyContent="center" alignItems="center">
       <Typography
         style={{
           color: colours.primary,
@@ -39,7 +34,7 @@ export default function StyledNumberField(props) {
       >
         {props.label}
       </Typography>
-      <Stack direction="row" justifyContent="flex-start" alignItems="center">
+      <Stack direction="row" justifyContent="center" alignItems="center">
         <StyledIconButton
           variant="contained"
           icon={<RemoveIcon fontSize="large" />}
@@ -51,7 +46,6 @@ export default function StyledNumberField(props) {
           id={props.label}
           value={props.value}
           onChange={onChangeValue}
-          type={props.type}
           sx={{
             input: {
               textAlign: "center",
@@ -60,6 +54,7 @@ export default function StyledNumberField(props) {
               fontSize: "24px",
               border: 2,
               borderColor: colours.primary,
+              width: " 72px",
             },
           }}
           InputProps={{

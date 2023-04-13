@@ -15,6 +15,7 @@ export default function App() {
       height="100vh"
       display="flex"
       flexDirection="column"
+      overflow="auto"
       style={{ backgroundColor: colours.secondary }}
     >
       <NavBar colours={colours} navbarHeader={navbarHeader} />

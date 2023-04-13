@@ -7,9 +7,9 @@ export default function MainPage() {
     <Stack
       display="flex"
       flexDirection="row"
-      justifyContent="flex-start"
+      justifyContent="center"
       alignItems="center"
-      overflow="auto"
+      margin={4}
       style={{
         height: "100vh",
       }}
