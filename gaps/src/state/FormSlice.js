@@ -31,6 +31,8 @@ export const formSlice = createSlice({
     },
     setMutationRate: (state, action) => {
       state.value.mutationRate = parseInt(action.payload);
+      state.value.mutationRate = Math.max(0, state.value.mutationRate);
+      state.value.mutationRate = Math.min(100, state.value.mutationRate);
     },
     setPopulationSize: (state, action) => {
       state.value.populationSize = parseInt(action.payload);
@@ -42,7 +44,7 @@ export const formSlice = createSlice({
       state.value.populationSize = Math.max(0, state.value.populationSize - 1);
     },
     incrementMutationRate: (state) => {
-      state.value.mutationRate += 1;
+      state.value.mutationRate = Math.min(100, state.value.mutationRate + 1);
     },
     decrementMutationRate: (state) => {
       state.value.mutationRate = Math.max(0, state.value.mutationRate - 1);
