@@ -3,10 +3,10 @@ import { Stack } from "@mui/system";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import StyledTextField from "./StyledTextField";
 import StyledNumberField from "./StyledNumberField";
+import GenePools from "./GenePools";
 import StyledTextIconButton from "../buttons/StyledTextIconButton";
 import { startAlgorithm } from "../../routers/GARouters";
 import {
-  setGenes,
   setPhrase,
   setMutationRate,
   setPopulationSize,
@@ -14,17 +14,17 @@ import {
   decrementPopulationSize,
   incrementMutationRate,
   decrementMutationRate,
-  getGenes,
   getPhrase,
   getMutationRate,
   getPopulationSize,
+  getPools,
 } from "../../state/FormSlice";
 
 export default function GAForm() {
-  const genes = useSelector((state) => getGenes(state));
   const phrase = useSelector((state) => getPhrase(state));
   const mutationRate = useSelector((state) => getMutationRate(state));
   const populationSize = useSelector((state) => getPopulationSize(state));
+  const genePools = useSelector((state) => getPools(state));
 
   return (
     <Stack
@@ -39,7 +39,6 @@ export default function GAForm() {
         value={phrase}
         onChangeValue={setPhrase}
       />
-      <StyledTextField label="Genes" value={genes} onChangeValue={setGenes} />
       <StyledNumberField
         label="Population Size"
         value={populationSize}
@@ -54,11 +53,12 @@ export default function GAForm() {
         onDecrementValue={decrementMutationRate}
         onIncrementValue={incrementMutationRate}
       />
+      <GenePools />
       <StyledTextIconButton
         variant="outlined"
         startIcon={<PlayArrowIcon />}
         onClick={() =>
-          startAlgorithm(phrase, genes, populationSize, mutationRate)
+          startAlgorithm(phrase, genePools, populationSize, mutationRate)
         }
         label={"Start"}
       />
