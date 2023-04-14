@@ -103,7 +103,7 @@ export const getPools = (state) => {
     state.form.value.punctuation,
   ].map((pool) => {
     return {
-      id: pool.label,
+      label: pool.label,
       checked: pool.checked,
     };
   });
