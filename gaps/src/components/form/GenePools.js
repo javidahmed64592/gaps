@@ -61,6 +61,7 @@ export default function GenePools() {
         {genePools.map((pool) => {
           return (
             <StyledCheckbox
+              key={pool.label}
               label={pool.label}
               checked={pool.checked}
               onChange={pool.onChange}
