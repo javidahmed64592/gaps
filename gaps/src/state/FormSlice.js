@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const valueInRange = (value, low, high) => {
+  const tempValue = Math.max(low, parseInt(value));
+  return Math.min(high, tempValue);
+};
+
 export const formSlice = createSlice({
   name: "form",
   initialState: {
@@ -21,33 +26,59 @@ export const formSlice = createSlice({
         checked: true,
       },
       phrase: "",
-      mutationRate: 3,
       populationSize: 200,
+      populationSizeLower: 2,
+      populationSizeUpper: 999,
+      mutationRate: 3,
+      mutationRateLower: 1,
+      mutationRateUpper: 100,
     },
   },
   reducers: {
     setPhrase: (state, action) => {
       state.value.phrase = action.payload;
     },
-    setMutationRate: (state, action) => {
-      state.value.mutationRate = parseInt(action.payload);
-      state.value.mutationRate = Math.max(0, state.value.mutationRate);
-      state.value.mutationRate = Math.min(100, state.value.mutationRate);
-    },
     setPopulationSize: (state, action) => {
-      state.value.populationSize = parseInt(action.payload);
+      state.value.populationSize = valueInRange(
+        action.payload,
+        state.value.populationSizeLower,
+        state.value.populationSizeUpper
+      );
     },
     incrementPopulationSize: (state) => {
-      state.value.populationSize += 1;
+      state.value.populationSize = valueInRange(
+        state.value.populationSize + 1,
+        state.value.populationSizeLower,
+        state.value.populationSizeUpper
+      );
     },
     decrementPopulationSize: (state) => {
-      state.value.populationSize = Math.max(0, state.value.populationSize - 1);
+      state.value.populationSize = valueInRange(
+        state.value.populationSize - 1,
+        state.value.populationSizeLower,
+        state.value.populationSizeUpper
+      );
+    },
+    setMutationRate: (state, action) => {
+      state.value.mutationRate = valueInRange(
+        action.payload,
+        state.value.mutationRateLower,
+        state.value.mutationRateUpper
+      );
     },
     incrementMutationRate: (state) => {
-      state.value.mutationRate = Math.min(100, state.value.mutationRate + 1);
+      state.value.mutationRate = valueInRange(
+        state.value.mutationRate + 1,
+        state.value.mutationRateLower,
+        state.value.mutationRateUpper
+      );
     },
     decrementMutationRate: (state) => {
-      state.value.mutationRate = Math.max(0, state.value.mutationRate - 1);
+      state.value.mutationRate = valueInRange(
+        state.value.mutationRate - 1,
+        state.value.mutationRateLower,
+        state.value.mutationRateUpper
+      );
     },
     toggleLowerLetters: (state) => {
       state.value.lowerCaseLetters = {
