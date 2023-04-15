@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 import { Stack, Typography } from "@mui/material";
+import ResultsListItem from "./ResultsListItem";
 import { getColours } from "../../state/ColourSlice";
 
-export default function ResultItems(props) {
+export default function ResultsList(props) {
   const colours = useSelector((state) => getColours(state));
   const { results } = props;
 
@@ -24,16 +25,9 @@ export default function ResultItems(props) {
         overflow="auto"
         style={{ flexGrow: 1, width: "100%", display: "flex" }}
       >
-        {results.map((result) => {
-          return (
-            <Typography
-              margin={1}
-              style={{ color: colours.quaternary, fontSize: "20px" }}
-            >
-              Generation {result.generation}: {result.best_chromosome}
-            </Typography>
-          );
-        })}
+        {results.map((result) => (
+          <ResultsListItem key={result.generation} result={result} />
+        ))}
       </Stack>
     </Stack>
   );

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
-import ResultItems from "./ResultItems";
+import ResultsList from "./ResultsList";
 import { getResults } from "../../state/ResultsSlice";
 
 export default function LoadedDisplay() {
@@ -17,7 +17,7 @@ export default function LoadedDisplay() {
         overflow: "auto",
       }}
     >
-      <ResultItems results={results} />
+      <ResultsList results={results} />
     </Box>
   );
 }
