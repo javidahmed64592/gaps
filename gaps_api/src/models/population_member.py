@@ -55,14 +55,13 @@ class population_member:
         Inputs:
           phrase: str, used to compare chromosome to phrase and calculate fitness
         """
-        self.fitness = 0
         score = 0
 
         for i in range(self.length):
             if self.chromosome[i] == phrase[i]:
                 score += 1
 
-        self.fitness = score**2
+        self.fitness = score
         return self.fitness
 
     def crossover(self, parentA, parentB):

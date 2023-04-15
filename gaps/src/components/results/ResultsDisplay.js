@@ -1,9 +1,12 @@
 import { useSelector } from "react-redux";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
+import { resultDisplays } from "../../public/ResultDisplays";
+import { getDisplay } from "../../state/ResultsSlice";
 import { getColours } from "../../state/ColourSlice";
 
 export default function ResultsDisplay() {
   const colours = useSelector((state) => getColours(state));
+  const display = useSelector((state) => getDisplay(state));
 
   return (
     <Box
@@ -12,7 +15,7 @@ export default function ResultsDisplay() {
       margin={2}
       style={{ flexGrow: 1, height: "80%" }}
     >
-      <Typography style={{ color: colours.quaternary }}>Results</Typography>
+      {resultDisplays[display]}
     </Box>
   );
 }

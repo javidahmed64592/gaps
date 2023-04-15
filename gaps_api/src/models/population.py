@@ -32,13 +32,10 @@ class population:
         self.phrase = phrase
         self.mem_genes = mem_genes
 
-        self.best_chromosome = ""
-        self.max_fitness = 0
-        self.population_fitness = np.empty(population_size)
-        self.generation = 0
-
         self.max_fitness_history = []
         self.avg_fitness_history = []
+        self.best_chromosome_history = []
+        self.results_history = []
 
     def __str__(self):
         """
@@ -84,6 +81,7 @@ class population:
         self.max_fitness = best.fitness
 
         # Add fitness data to lists
+        self.best_chromosome_history.append(self.best_chromosome)
         self.max_fitness_history.append(self.max_fitness)
         self.avg_fitness_history.append(np.average(self.population_fitness))
 

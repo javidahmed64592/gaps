@@ -11,7 +11,18 @@ def start_algorithm():
     genes = parse_gene_pools(request.json["genes"])
     population_size = request.json["populationSize"]
     mutation_rate = request.json["mutationRate"]
+
     mypop = population(population_size, phrase, genes, mutation_rate)
     mypop.run()
 
-    return make_request("Success", 200)
+    max_fitness = mypop.max_fitness_history
+    avg_fitness = mypop.avg_fitness_history
+    best_chromosome = mypop.best_chromosome_history
+
+    response = {
+        "max_fitness": max_fitness,
+        "avg_fitness": avg_fitness,
+        "best_chromosome": best_chromosome,
+    }
+
+    return make_request("Success", response, 200)

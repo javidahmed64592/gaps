@@ -1,2 +1,2 @@
-def make_request(status, code):
-    return {"status": status}, code
+def make_request(status, body, code):
+    return {"status": status, "body": body}, code

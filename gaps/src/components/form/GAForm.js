@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Stack } from "@mui/system";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import StyledTextField from "./StyledTextField";
@@ -19,8 +19,10 @@ import {
   getPopulationSize,
   getPools,
 } from "../../state/FormSlice";
+import { setResults, setLoading } from "../../state/ResultsSlice";
 
 export default function GAForm() {
+  const dispatch = useDispatch();
   const phrase = useSelector((state) => getPhrase(state));
   const mutationRate = useSelector((state) => getMutationRate(state));
   const populationSize = useSelector((state) => getPopulationSize(state));
@@ -57,9 +59,17 @@ export default function GAForm() {
       <StyledTextIconButton
         variant="outlined"
         startIcon={<PlayArrowIcon />}
-        onClick={() =>
-          startAlgorithm(phrase, genePools, populationSize, mutationRate)
-        }
+        onClick={() => {
+          dispatch(setLoading(true));
+          startAlgorithm(phrase, genePools, populationSize, mutationRate).then(
+            (response) => {
+              response.json().then((data) => {
+                dispatch(setResults(data.body));
+              });
+            }
+          );
+          dispatch(setLoading(false));
+        }}
         label={"Start"}
       />
     </Stack>
