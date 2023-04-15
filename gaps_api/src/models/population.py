@@ -32,9 +32,6 @@ class population:
         self.phrase = phrase
         self.mem_genes = mem_genes
 
-        self.max_fitness_history = []
-        self.avg_fitness_history = []
-        self.best_chromosome_history = []
         self.results_history = []
 
     def __str__(self):
@@ -45,17 +42,6 @@ class population:
             self.population_size,
             self.phrase,
             self.mem_genes,
-        )
-
-    def print_avg_gens(self):
-        """
-        Prints the average number of generations required to guess the phrase if
-        all guesses were random.
-        """
-        num_gens = (len(self.mem_genes) ** len(self.phrase)) / self.population_size
-        print(
-            "If all guesses are random, it would take on average %s generations to guess the phrase."
-            % num_gens
         )
 
     def calculate_population_fitness(self):
@@ -81,9 +67,14 @@ class population:
         self.max_fitness = best.fitness
 
         # Add fitness data to lists
-        self.best_chromosome_history.append(self.best_chromosome)
-        self.max_fitness_history.append(self.max_fitness)
-        self.avg_fitness_history.append(np.average(self.population_fitness))
+        self.results_history.append(
+            {
+                "generation": self.generation,
+                "best_chromosome": self.best_chromosome,
+                "max_fitness": self.max_fitness,
+                "avg_fitness": np.average(self.population_fitness),
+            }
+        )
 
     def select_parent(self, parent):
         """
@@ -143,12 +134,6 @@ class population:
 
             # Correct phrase found so break out of the loop
             if self.best_chromosome == self.phrase:
-                print("%s Phrase solved to be: %s" % (gen, self.best_chromosome))
                 break
 
-            # Return the closest match and its associated fitness then evolve.
-            print(
-                "%s Best Chromosome: %s \t|| Max Fitness: %s"
-                % (gen, self.best_chromosome, self.max_fitness)
-            )
             self.evolve()

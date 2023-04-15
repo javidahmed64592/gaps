@@ -11,7 +11,7 @@ export default function MainPage() {
       alignItems="center"
       margin={4}
       style={{
-        height: "100vh",
+        height: "80%",
       }}
     >
       <GAForm />

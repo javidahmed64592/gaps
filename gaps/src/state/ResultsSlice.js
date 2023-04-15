@@ -4,18 +4,14 @@ export const resultsSlice = createSlice({
   name: "results",
   initialState: {
     value: {
-      avgFitness: [],
-      maxFitness: [],
-      bestChromosome: [],
+      resultsHistory: [],
       loading: false,
       display: "notLoadedDisplay",
     },
   },
   reducers: {
     setResults: (state, action) => {
-      state.value.avgFitness = action.payload.avg_fitness;
-      state.value.maxFitness = action.payload.max_fitness;
-      state.value.bestChromosome = action.payload.best_chromosome;
+      state.value.resultsHistory = action.payload.results;
       state.value.display = "loadedDisplay";
     },
     setLoading: (state, action) => {
@@ -23,9 +19,7 @@ export const resultsSlice = createSlice({
       state.value.display = "loadingDisplay";
       if (action.payload) {
         state.value.display = "notLoadedDisplay";
-        state.value.avgFitness = [];
-        state.value.maxFitness = [];
-        state.value.bestChromosome = [];
+        state.value.resultsHistory = [];
       }
     },
   },
@@ -33,13 +27,7 @@ export const resultsSlice = createSlice({
 
 export const { setResults, setLoading } = resultsSlice.actions;
 
-export const getResults = (state) => {
-  return {
-    avgFitness: state.results.value.avgFitness,
-    maxFitness: state.results.value.maxFitness,
-    bestChromosome: state.results.value.bestChromosome,
-  };
-};
+export const getResults = (state) => state.results.value.resultsHistory;
 export const getLoading = (state) => state.results.value.loading;
 export const getDisplay = (state) => state.results.value.display;
 export const getResultsLoaded = (state) =>

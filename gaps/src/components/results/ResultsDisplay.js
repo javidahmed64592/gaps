@@ -13,7 +13,7 @@ export default function ResultsDisplay() {
       border={2}
       borderColor={colours.primary}
       margin={2}
-      style={{ flexGrow: 1, height: "80%" }}
+      style={{ flexGrow: 1, height: "100%" }}
     >
       {resultDisplays[display]}
     </Box>

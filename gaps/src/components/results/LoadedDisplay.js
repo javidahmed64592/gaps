@@ -1,10 +1,9 @@
 import { useSelector } from "react-redux";
-import { Box, Typography, Stack } from "@mui/material";
+import { Box } from "@mui/material";
+import ResultItems from "./ResultItems";
 import { getResults } from "../../state/ResultsSlice";
-import { getColours } from "../../state/ColourSlice";
 
 export default function LoadedDisplay() {
-  const colours = useSelector((state) => getColours(state));
   const results = useSelector((state) => getResults(state));
 
   return (
@@ -15,14 +14,10 @@ export default function LoadedDisplay() {
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",
+        overflow: "auto",
       }}
     >
-      <Typography style={{ color: colours.quaternary, fontSize: "24px" }}>
-        Results
-      </Typography>
-      <Stack direction="column" justifyContent="center" alignItems="center">
-        {results.bestChromosome.map((chromosome) => console.log(chromosome))}
-      </Stack>
+      <ResultItems results={results} />
     </Box>
   );
 }

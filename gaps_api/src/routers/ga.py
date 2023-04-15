@@ -15,14 +15,10 @@ def start_algorithm():
     mypop = population(population_size, phrase, genes, mutation_rate)
     mypop.run()
 
-    max_fitness = mypop.max_fitness_history
-    avg_fitness = mypop.avg_fitness_history
-    best_chromosome = mypop.best_chromosome_history
+    results = mypop.results_history
 
     response = {
-        "max_fitness": max_fitness,
-        "avg_fitness": avg_fitness,
-        "best_chromosome": best_chromosome,
+        "results": results,
     }
 
     return make_request("Success", response, 200)
