@@ -84,7 +84,7 @@ class population:
         Inputs:
           parent: population_member, potential parent to use for crossover
         """
-        if np.random.uniform(0, 1) < parent.fitness / self.max_fitness:
+        if np.random.uniform(0, 1) < (parent.fitness / self.max_fitness) ** 2:
             return parent
         return None
 
