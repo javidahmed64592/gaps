@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Stack } from "@mui/system";
+import { Box } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import StyledTextField from "./StyledTextField";
 import StyledNumberField from "./StyledNumberField";
@@ -29,49 +30,58 @@ export default function GAForm() {
   const genePools = useSelector((state) => getPools(state));
 
   return (
-    <Stack
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-      spacing={2}
-      margin={2}
+    <Box
+      style={{
+        flexGrow: 1,
+        height: "100%",
+      }}
     >
-      <StyledTextField
-        label="Phrase"
-        value={phrase}
-        onChangeValue={setPhrase}
-      />
-      <StyledNumberField
-        label="Population Size"
-        value={populationSize}
-        onChangeValue={setPopulationSize}
-        onDecrementValue={decrementPopulationSize}
-        onIncrementValue={incrementPopulationSize}
-      />
-      <StyledNumberField
-        label="Mutation Rate"
-        value={mutationRate}
-        onChangeValue={setMutationRate}
-        onDecrementValue={decrementMutationRate}
-        onIncrementValue={incrementMutationRate}
-      />
-      <GenePools />
-      <StyledTextIconButton
-        variant="outlined"
-        startIcon={<PlayArrowIcon />}
-        onClick={() => {
-          dispatch(setLoading(true));
-          startAlgorithm(phrase, genePools, populationSize, mutationRate).then(
-            (response) => {
+      <Stack
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+      >
+        <StyledTextField
+          label="Phrase"
+          value={phrase}
+          onChangeValue={setPhrase}
+        />
+        <StyledNumberField
+          label="Population Size"
+          value={populationSize}
+          onChangeValue={setPopulationSize}
+          onDecrementValue={decrementPopulationSize}
+          onIncrementValue={incrementPopulationSize}
+        />
+        <StyledNumberField
+          label="Mutation Rate"
+          value={mutationRate}
+          onChangeValue={setMutationRate}
+          onDecrementValue={decrementMutationRate}
+          onIncrementValue={incrementMutationRate}
+        />
+        <GenePools />
+        <StyledTextIconButton
+          variant="outlined"
+          startIcon={<PlayArrowIcon />}
+          onClick={() => {
+            dispatch(setLoading(true));
+            startAlgorithm(
+              phrase,
+              genePools,
+              populationSize,
+              mutationRate
+            ).then((response) => {
               response.json().then((data) => {
                 dispatch(setResults(data.body));
               });
-            }
-          );
-          dispatch(setLoading(false));
-        }}
-        label={"Start"}
-      />
-    </Stack>
+            });
+            dispatch(setLoading(false));
+          }}
+          label={"Start"}
+        />
+      </Stack>
+    </Box>
   );
 }

@@ -1,21 +1,29 @@
-import { Stack } from "@mui/material";
-import GAForm from "../components/form/GAForm";
+import { Box, Stack } from "@mui/material";
+import LeftPane from "../components/form/LeftPane";
 import ResultsDisplay from "../components/results/ResultsDisplay";
 
 export default function MainPage() {
   return (
-    <Stack
-      display="flex"
-      flexDirection="row"
-      justifyContent="center"
-      alignItems="center"
-      margin={4}
+    <Box
+      margin={2}
       style={{
-        height: "80%",
+        height: "100%",
+        flexGrow: 1,
+        display: "flex",
       }}
     >
-      <GAForm />
-      <ResultsDisplay />
-    </Stack>
+      <Stack
+        display="flex"
+        flexDirection="row"
+        justifyContent="center"
+        alignItems="center"
+        style={{
+          flexGrow: 1,
+        }}
+      >
+        <LeftPane />
+        <ResultsDisplay />
+      </Stack>
+    </Box>
   );
 }

@@ -11,6 +11,7 @@ export default function StyledTextIconButton(props) {
       disabled={props.disabled}
       startIcon={props.startIcon}
       onClick={props.onClick}
+      margin={2}
       style={{
         color: "inherit",
         backgroundColor: colours.primary,
