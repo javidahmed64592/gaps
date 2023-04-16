@@ -27,21 +27,25 @@ export default function GenePools() {
     {
       label: lowerLetters.label,
       checked: lowerLetters.checked,
+      required: lowerLetters.required,
       onChange: () => toggleGenePool(toggleLowerLetters()),
     },
     {
       label: upperLetters.label,
       checked: upperLetters.checked,
+      required: upperLetters.required,
       onChange: () => toggleGenePool(toggleUpperLetters()),
     },
     {
       label: numbers.label,
       checked: numbers.checked,
+      required: numbers.required,
       onChange: () => toggleGenePool(toggleNumbers()),
     },
     {
       label: punctuation.label,
       checked: punctuation.checked,
+      required: punctuation.required,
       onChange: () => toggleGenePool(togglePunctuation()),
     },
   ];
@@ -64,6 +68,7 @@ export default function GenePools() {
               label={pool.label}
               checked={pool.checked}
               onChange={pool.onChange}
+              required={pool.required}
             />
           );
         })}

@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-const valueInRange = (value, low, high) => {
-  const tempValue = Math.max(low, parseInt(value));
-  return Math.min(high, tempValue);
-};
+import { valueInRange, setPoolRequired } from "../utils/FormUtils";
 
 export const formSlice = createSlice({
   name: "form",
@@ -11,19 +7,27 @@ export const formSlice = createSlice({
     value: {
       lowerCaseLetters: {
         label: "Lower case letters",
-        checked: true,
+        value: "abcdefghijklmnopqrstuvwxyz",
+        checked: false,
+        required: false,
       },
       upperCaseLetters: {
         label: "Upper case letters",
-        checked: true,
+        value: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        checked: false,
+        required: false,
       },
       numbers: {
         label: "Numbers",
-        checked: true,
+        value: "0123456789",
+        checked: false,
+        required: false,
       },
       punctuation: {
         label: "Punctuation",
-        checked: true,
+        value: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ ",
+        checked: false,
+        required: false,
       },
       phrase: "",
       populationSize: 200,
@@ -37,6 +41,22 @@ export const formSlice = createSlice({
   reducers: {
     setPhrase: (state, action) => {
       state.value.phrase = action.payload;
+      state.value.lowerCaseLetters = setPoolRequired(
+        state.value.phrase,
+        state.value.lowerCaseLetters
+      );
+      state.value.upperCaseLetters = setPoolRequired(
+        state.value.phrase,
+        state.value.upperCaseLetters
+      );
+      state.value.numbers = setPoolRequired(
+        state.value.phrase,
+        state.value.numbers
+      );
+      state.value.punctuation = setPoolRequired(
+        state.value.phrase,
+        state.value.punctuation
+      );
     },
     setPopulationSize: (state, action) => {
       state.value.populationSize = valueInRange(

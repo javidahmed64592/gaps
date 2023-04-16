@@ -17,6 +17,7 @@ export default function StyledCheckbox(props) {
           <Checkbox
             checked={props.checked}
             onChange={props.onChange}
+            disabled={props.required}
             style={{
               color: colours.primary,
             }}
