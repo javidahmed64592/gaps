@@ -8,23 +8,11 @@ export default function ResultsList(props) {
   const { results } = props;
 
   return (
-    <Stack
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-      spacing={2}
-      style={{ flexGrow: 1 }}
-    >
+    <Stack direction="column" alignItems="center">
       <Typography style={{ color: colours.quaternary, fontSize: "24px" }}>
         Results
       </Typography>
-      <Stack
-        direction="column"
-        justifyContent="center"
-        alignItems="flex-start"
-        overflow="auto"
-        style={{ flexGrow: 1, width: "100%", display: "flex" }}
-      >
+      <Stack direction="column" style={{ width: "100%" }}>
         {results.map((result) => (
           <ResultsListItem key={result.generation} result={result} />
         ))}

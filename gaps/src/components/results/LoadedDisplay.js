@@ -11,9 +11,7 @@ export default function LoadedDisplay() {
       style={{
         flexGrow: 1,
         height: "100%",
-        display: "flex",
         alignItems: "flex-start",
-        justifyContent: "center",
         overflow: "auto",
       }}
     >
