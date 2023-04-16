@@ -1,5 +1,6 @@
 import numpy as np
 from models.population_member import population_member
+from utils.ga_utils import normalise_fitness
 
 
 class population:
@@ -71,8 +72,10 @@ class population:
             {
                 "generation": self.generation,
                 "best_chromosome": self.best_chromosome,
-                "max_fitness": self.max_fitness,
-                "avg_fitness": np.average(self.population_fitness),
+                "max_fitness": normalise_fitness(self.max_fitness, self.phrase),
+                "avg_fitness": normalise_fitness(
+                    np.average(self.population_fitness), self.phrase
+                ),
             }
         )
 

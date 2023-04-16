@@ -9,3 +9,7 @@ def parse_gene_pools(pools):
             genes += gene_pools[pool["label"]]
 
     return genes
+
+
+def normalise_fitness(fitness, phrase):
+    return int((fitness / len(phrase)) * 100)
