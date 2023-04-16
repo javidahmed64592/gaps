@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Stack } from "@mui/system";
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import StyledCheckbox from "./StyledCheckbox";
 import {
   toggleLowerLetters,

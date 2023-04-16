@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Stack } from "@mui/system";
-import { Box } from "@mui/material";
+import { Stack, Box } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import StyledTextField from "./StyledTextField";
 import StyledNumberField from "./StyledNumberField";

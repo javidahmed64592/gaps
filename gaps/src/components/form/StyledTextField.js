@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Stack } from "@mui/system";
-import { Typography, TextField } from "@mui/material";
+import { Stack, Typography, TextField } from "@mui/material";
 import { getColours } from "../../state/ColourSlice";
 
 export default function StyledTextField(props) {
