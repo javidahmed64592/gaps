@@ -12,7 +12,9 @@ class population:
     specified mutation rate.
     """
 
-    def __init__(self, population_size, phrase, mem_genes, mutation_rate=10):
+    def __init__(
+        self, population_size, phrase, mem_genes, mutation_rate=10, max_gens=500
+    ):
         """
         Initialise a population of members of a specified size. The population uses
         a phrase for the members to calculate their fitness.
@@ -32,18 +34,9 @@ class population:
         self.population_size = population_size
         self.phrase = phrase
         self.mem_genes = mem_genes
+        self.max_gens = max_gens
 
         self.results_history = []
-
-    def __str__(self):
-        """
-        Return population size, phrase, and the possible genes.
-        """
-        return "Population Size: %s\nPopulation Phrase: %s\nMember Genes: %s" % (
-            self.population_size,
-            self.phrase,
-            self.mem_genes,
-        )
 
     def calculate_population_fitness(self):
         """
@@ -87,6 +80,9 @@ class population:
         Inputs:
           parent: population_member, potential parent to use for crossover
         """
+        if self.max_fitness == 0:
+            return parent
+
         if np.random.uniform(0, 1) < (parent.fitness / self.max_fitness) ** 2:
             return parent
         return None
@@ -130,9 +126,8 @@ class population:
         """
         self.generation = 1
 
-        while True:
+        while True and self.generation <= self.max_gens:
             # Evaluate the population
-            gen = "Generation %s \t||" % self.generation
             self.evaluate()
 
             # Correct phrase found so break out of the loop

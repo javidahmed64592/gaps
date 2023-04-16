@@ -11,8 +11,9 @@ def start_algorithm():
     genes = parse_gene_pools(request.json["genes"])
     population_size = request.json["populationSize"]
     mutation_rate = request.json["mutationRate"]
+    max_gens = request.json["maxGens"]
 
-    mypop = population(population_size, phrase, genes, mutation_rate)
+    mypop = population(population_size, phrase, genes, mutation_rate, max_gens)
     mypop.run()
 
     results = mypop.results_history

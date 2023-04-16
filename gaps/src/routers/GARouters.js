@@ -1,4 +1,10 @@
-export const startAlgorithm = (phrase, genes, populationSize, mutationRate) => {
+export const startAlgorithm = (
+  phrase,
+  genes,
+  populationSize,
+  mutationRate,
+  maxGens
+) => {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -7,6 +13,7 @@ export const startAlgorithm = (phrase, genes, populationSize, mutationRate) => {
       genes: genes,
       populationSize: populationSize,
       mutationRate: mutationRate,
+      maxGens: maxGens,
     }),
   };
 

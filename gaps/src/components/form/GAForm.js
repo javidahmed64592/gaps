@@ -14,9 +14,13 @@ import {
   decrementPopulationSize,
   incrementMutationRate,
   decrementMutationRate,
+  setMaxGens,
+  incrementMaxGens,
+  decrementMaxGens,
   getPhrase,
-  getMutationRate,
   getPopulationSize,
+  getMutationRate,
+  getMaxGens,
   getPools,
 } from "../../state/FormSlice";
 import { setResults, setLoading } from "../../state/ResultsSlice";
@@ -24,8 +28,9 @@ import { setResults, setLoading } from "../../state/ResultsSlice";
 export default function GAForm() {
   const dispatch = useDispatch();
   const phrase = useSelector((state) => getPhrase(state));
-  const mutationRate = useSelector((state) => getMutationRate(state));
   const populationSize = useSelector((state) => getPopulationSize(state));
+  const mutationRate = useSelector((state) => getMutationRate(state));
+  const maxGens = useSelector((state) => getMaxGens(state));
   const genePools = useSelector((state) => getPools(state));
 
   return (
@@ -60,6 +65,13 @@ export default function GAForm() {
           onDecrementValue={decrementMutationRate}
           onIncrementValue={incrementMutationRate}
         />
+        <StyledNumberField
+          label="Max Generations"
+          value={maxGens}
+          onChangeValue={setMaxGens}
+          onDecrementValue={decrementMaxGens}
+          onIncrementValue={incrementMaxGens}
+        />
         <GenePools />
         <StyledTextIconButton
           variant="outlined"
@@ -70,7 +82,8 @@ export default function GAForm() {
               phrase,
               genePools,
               populationSize,
-              mutationRate
+              mutationRate,
+              maxGens
             ).then((response) => {
               response.json().then((data) => {
                 dispatch(setResults(data.body));

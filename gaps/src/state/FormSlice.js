@@ -36,6 +36,9 @@ export const formSlice = createSlice({
       mutationRate: 3,
       mutationRateLower: 1,
       mutationRateUpper: 100,
+      maxGens: 500,
+      maxGensLower: 1,
+      maxGensUpper: 999,
     },
   },
   reducers: {
@@ -100,6 +103,27 @@ export const formSlice = createSlice({
         state.value.mutationRateUpper
       );
     },
+    setMaxGens: (state, action) => {
+      state.value.maxGens = valueInRange(
+        action.payload,
+        state.value.maxGensLower,
+        state.value.maxGensUpper
+      );
+    },
+    incrementMaxGens: (state) => {
+      state.value.maxGens = valueInRange(
+        state.value.maxGens + 1,
+        state.value.maxGensLower,
+        state.value.maxGensUpper
+      );
+    },
+    decrementMaxGens: (state) => {
+      state.value.maxGens = valueInRange(
+        state.value.maxGens - 1,
+        state.value.maxGensLower,
+        state.value.maxGensUpper
+      );
+    },
     toggleLowerLetters: (state) => {
       state.value.lowerCaseLetters = {
         ...state.value.lowerCaseLetters,
@@ -135,6 +159,9 @@ export const {
   decrementPopulationSize,
   incrementMutationRate,
   decrementMutationRate,
+  setMaxGens,
+  incrementMaxGens,
+  decrementMaxGens,
   toggleLowerLetters,
   toggleUpperLetters,
   toggleNumbers,
@@ -142,8 +169,9 @@ export const {
 } = formSlice.actions;
 
 export const getPhrase = (state) => state.form.value.phrase;
-export const getMutationRate = (state) => state.form.value.mutationRate;
 export const getPopulationSize = (state) => state.form.value.populationSize;
+export const getMutationRate = (state) => state.form.value.mutationRate;
+export const getMaxGens = (state) => state.form.value.maxGens;
 export const getLowerLetters = (state) => state.form.value.lowerCaseLetters;
 export const getUpperLetters = (state) => state.form.value.upperCaseLetters;
 export const getNumbers = (state) => state.form.value.numbers;
