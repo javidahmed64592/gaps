@@ -16,7 +16,7 @@ export default function App() {
       display="flex"
       flexDirection="column"
       overflow="auto"
-      style={{ backgroundColor: colours.secondary }}
+      style={{ backgroundColor: colours.secondary, flexGrow: 1 }}
     >
       <NavBar colours={colours} navbarHeader={navbarHeader} />
       {pages[pageState]}

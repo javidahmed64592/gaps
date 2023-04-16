@@ -10,7 +10,6 @@ export default function LoadedDisplay() {
     <Box
       style={{
         flexGrow: 1,
-        height: "100%",
         alignItems: "flex-start",
         overflow: "auto",
       }}

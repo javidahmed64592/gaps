@@ -38,6 +38,9 @@ export default function GAForm() {
       style={{
         flexGrow: 1,
         height: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <Stack

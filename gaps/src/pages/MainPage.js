@@ -4,18 +4,11 @@ import ResultsDisplay from "../components/results/ResultsDisplay";
 
 export default function MainPage() {
   return (
-    <Box
-      margin={2}
-      style={{
-        height: "100%",
-        flexGrow: 1,
-        display: "flex",
-      }}
-    >
+    <Box margin={2} height="100vh" display="flex" flexDirection="column">
       <Stack
         display="flex"
         flexDirection="row"
-        justifyContent="center"
+        justifyContent="flex-start"
         alignItems="center"
         style={{
           flexGrow: 1,

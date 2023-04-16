@@ -13,7 +13,9 @@ export default function ResultsDisplay() {
       border={2}
       borderColor={colours.primary}
       margin={2}
-      style={{ flexGrow: 1, height: "100%" }}
+      height="80vh"
+      overflow="auto"
+      style={{ flexGrow: 1 }}
     >
       {resultDisplays[display]}
     </Box>
